@@ -1,5 +1,5 @@
 ---
-title: Why sofie
+title: Why Sofie
 description: The problem sofie addresses, the principles it follows and the trade-offs a team accepts by using it.
 sidebar:
   order: 1
@@ -126,7 +126,7 @@ was built from. **Costs:** the model is read from source without compiling, so i
 the structure declares and does not guess at the rest. Where it cannot resolve something, such as
 a call whose type only inference knows, it says so rather than inventing an answer.
 
-## What sofie deliberately does not do
+## What Sofie deliberately does not do
 
 **No runtime magic.** Nothing is discovered by scanning at startup, and nothing is registered by
 side effect. The binary is the server, built on `hyper` directly, with no separate process in front
@@ -197,7 +197,7 @@ app running as one instance. A team adopting sofie today is adopting a design un
 
 ## Further reading
 
-- [How sofie works](../../start/how-it-works/): the parts of an app in one page.
+- [How Sofie works](../../start/how-it-works/): the parts of an app in one page.
 - [Architecture overview](../../architecture/overview/): layout, roles, modules and crates.
 - [Size and speed](../performance/): how sofie measures itself.
 - [`docs/structure.md`](https://github.com/sofie-rs/sofie/blob/main/docs/structure.md): the full

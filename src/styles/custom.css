@@ -1,61 +1,78 @@
 /*
- * The brand palette: teal #14D8C3, pink #FF6B9D, warm gray #E5E1DB, charcoal #0B0B0F.
- * Teal is too light for text on a light background (1.8:1), so the light theme uses a darker
- * teal of the same hue that keeps links and the selected sidebar entry above 4.5:1.
+ * Two colors, both read from the logo: its background #090B0C and its icon's teal #2DD6D0,
+ * with white and neutral grays drawn from that background. Teal is too light for text on white,
+ * so the light theme writes links in charcoal with a teal underline and fills buttons in teal.
  */
 :root {
-	--sofie-teal: #14d8c3;
-	--sofie-pink: #ff6b9d;
+	--sofie-charcoal: #090b0c;
+	--sofie-teal: #2dd6d0;
 
-	--sl-color-accent-low: #073a35;
-	--sl-color-accent: #14d8c3;
-	--sl-color-accent-high: #14d8c3;
+	--sl-color-accent-low: #0c3a39;
+	--sl-color-accent: #2dd6d0;
+	--sl-color-accent-high: #2dd6d0;
 
 	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #e5e1db;
-	--sl-color-gray-2: #c9c5be;
-	--sl-color-gray-3: #8c8882;
-	--sl-color-gray-4: #4b4a50;
-	--sl-color-gray-5: #2a2a31;
-	--sl-color-gray-6: #16161b;
-	--sl-color-black: #0b0b0f;
+	--sl-color-gray-1: #e8ebec;
+	--sl-color-gray-2: #c5cacd;
+	--sl-color-gray-3: #8a9096;
+	--sl-color-gray-4: #4b5157;
+	--sl-color-gray-5: #24282c;
+	--sl-color-gray-6: #14171a;
+	--sl-color-black: #090b0c;
+
+	/* The caution aside, the only other color Starlight shows here. */
+	--sl-color-orange-low: #0c3a39;
+	--sl-color-orange: #2dd6d0;
+	--sl-color-orange-high: #2dd6d0;
 }
 
 :root[data-theme='light'] {
-	--sl-color-accent-low: #c9f4ee;
-	--sl-color-accent: #087168;
-	--sl-color-accent-high: #04423c;
+	--sl-color-accent-low: #d5f6f5;
+	--sl-color-accent: #090b0c;
+	--sl-color-accent-high: #090b0c;
 
-	--sl-color-white: #0b0b0f;
-	--sl-color-gray-1: #1b1b20;
-	--sl-color-gray-2: #2e2d31;
-	--sl-color-gray-3: #514e4a;
-	--sl-color-gray-4: #8a857e;
-	--sl-color-gray-5: #c9c4bb;
-	--sl-color-gray-6: #e5e1db;
-	--sl-color-gray-7: #f3f1ed;
-	--sl-color-black: #fbfaf8;
+	--sl-color-white: #090b0c;
+	--sl-color-gray-1: #14171a;
+	--sl-color-gray-2: #24282c;
+	--sl-color-gray-3: #4b5157;
+	--sl-color-gray-4: #8a9096;
+	--sl-color-gray-5: #c5cacd;
+	--sl-color-gray-6: #e8ebec;
+	--sl-color-gray-7: #f4f6f6;
+	--sl-color-black: #ffffff;
+
+	--sl-color-orange-low: #d5f6f5;
+	--sl-color-orange: #2dd6d0;
+	--sl-color-orange-high: #090b0c;
 }
 
-/* Filled in brand teal on either theme: charcoal on teal reads at 10.9:1. */
-:root[data-theme='light'] .sl-link-button.primary,
-:root[data-theme='light'] .sidebar-content [aria-current='page'] {
+/* Filled in teal on either theme: charcoal on teal reads at 10.9:1. */
+.sl-link-button.primary,
+.sidebar-content [aria-current='page'] {
 	background-color: var(--sofie-teal);
 	border-color: var(--sofie-teal);
-	color: #0b0b0f;
+	color: var(--sofie-charcoal);
 }
 
-:root[data-theme='light'] .sl-link-button.primary:hover {
-	background-color: #11c2af;
-	color: #0b0b0f;
+.sl-link-button.primary:hover {
+	background-color: color-mix(in srgb, var(--sofie-teal) 85%, var(--sofie-charcoal));
+	color: var(--sofie-charcoal);
+}
+
+/* Starlight gives each card of a grid its own color; here every card is teal. */
+.card {
+	--sl-card-border: var(--sofie-teal);
+	--sl-card-bg: var(--sl-color-accent-low);
+}
+
+:root[data-theme='light'] .sl-markdown-content a:not(.sl-link-button) {
+	text-decoration-color: var(--sofie-teal);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 3px;
 }
 
 ::selection {
-	background-color: color-mix(in srgb, var(--sofie-pink) 35%, transparent);
-}
-
-.sl-markdown-content a:not(.sl-link-button):hover {
-	text-decoration-color: var(--sofie-pink);
+	background-color: color-mix(in srgb, var(--sofie-teal) 40%, transparent);
 }
 
 /* The logo is a dark square; rounded, it reads as an icon on either theme. */

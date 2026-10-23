@@ -10,7 +10,7 @@ export default defineConfig({
 	base,
 	integrations: [
 		starlight({
-			title: 'sofie',
+			title: 'Sofie',
 			logo: { src: './src/assets/logo.png', alt: '' },
 			favicon: '/favicon.png',
 			customCss: ['./src/styles/custom.css'],
@@ -21,7 +21,7 @@ export default defineConfig({
 			editLink: { baseUrl: 'https://github.com/sofie-rs/sofie.rs/edit/main/' },
 			sidebar: [
 				{ label: 'Start here', items: ['start/getting-started', 'start/how-it-works'] },
-				{ label: 'Why sofie', items: [{ autogenerate: { directory: 'why' } }] },
+				{ label: 'Why Sofie', items: [{ autogenerate: { directory: 'why' } }] },
 				{ label: 'Architecture', items: [{ autogenerate: { directory: 'architecture' } }] },
 				{ label: 'Features', items: [{ autogenerate: { directory: 'features' } }] },
 				{ label: 'Reference', collapsed: true, items: [{ autogenerate: { directory: 'reference' } }] },

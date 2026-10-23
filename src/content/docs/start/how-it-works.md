@@ -1,5 +1,5 @@
 ---
-title: How sofie works
+title: How Sofie works
 description: The structure an app follows and what the framework derives from it.
 ---
 
