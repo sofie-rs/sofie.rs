@@ -1,3 +1,50 @@
+/*
+ * The brand palette: teal #14D8C3, pink #FF6B9D, warm gray #E5E1DB, charcoal #0B0B0F.
+ * Teal is too light for text on a light background (1.8:1), so the light theme uses a darker
+ * teal of the same hue that keeps links and the selected sidebar entry above 4.5:1.
+ */
+:root {
+	--sofie-teal: #14d8c3;
+	--sofie-pink: #ff6b9d;
+
+	--sl-color-accent-low: #073a35;
+	--sl-color-accent: #14d8c3;
+	--sl-color-accent-high: #14d8c3;
+
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #e5e1db;
+	--sl-color-gray-2: #c9c5be;
+	--sl-color-gray-3: #8c8882;
+	--sl-color-gray-4: #4b4a50;
+	--sl-color-gray-5: #2a2a31;
+	--sl-color-gray-6: #16161b;
+	--sl-color-black: #0b0b0f;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #c9f4ee;
+	--sl-color-accent: #087168;
+	--sl-color-accent-high: #04423c;
+
+	--sl-color-white: #0b0b0f;
+	--sl-color-gray-1: #1b1b20;
+	--sl-color-gray-2: #2e2d31;
+	--sl-color-gray-3: #514e4a;
+	--sl-color-gray-4: #8a857e;
+	--sl-color-gray-5: #c9c4bb;
+	--sl-color-gray-6: #e5e1db;
+	--sl-color-gray-7: #f3f1ed;
+	--sl-color-black: #fbfaf8;
+}
+
+::selection {
+	background-color: color-mix(in srgb, var(--sofie-pink) 35%, transparent);
+}
+
+.sl-markdown-content a:not(.sl-link-button):hover {
+	text-decoration-color: var(--sofie-pink);
+}
+
 /* The logo is a dark square; rounded, it reads as an icon on either theme. */
 .hero img {
 	border-radius: 22%;
