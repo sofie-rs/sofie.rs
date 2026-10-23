@@ -1,0 +1,8 @@
+/* The logo is a dark square; rounded, it reads as an icon on either theme. */
+.hero img {
+	border-radius: 22%;
+}
+
+.site-title img {
+	border-radius: 22%;
+}
