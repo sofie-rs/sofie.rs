@@ -60,6 +60,10 @@ writes the app’s wiring, what contracts export, `.env.example` and `AGENTS.md`
 screen binding against its loader’s type. Generated files are committed and never edited;
 `sofie check` reports them stale when the code changes.
 
+Each part has a page of its own under [Architecture](../../architecture/overview/), and what the
+framework gives an app without code under Features, such as
+[security](../../features/security/) and [observability](../../features/observability/).
+
 The full contract is in
 [`docs/structure.md`](https://github.com/sofie-rs/sofie/blob/main/docs/structure.md), and how the
 framework implements it in

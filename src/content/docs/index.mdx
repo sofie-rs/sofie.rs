@@ -16,7 +16,7 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 
 <Aside type="caution" title="Proof of concept">
 APIs change without notice. Do not build on sofie for production yet.
@@ -39,4 +39,15 @@ APIs change without notice. Do not build on sofie for production yet.
 		`sofie check` holds every app to the structure, so a module reaching into another one fails
 		`cargo build`.
 	</Card>
+</CardGrid>
+
+## Read on
+
+<CardGrid>
+	<LinkCard title="Why sofie" description="The problem it solves, its principles and what they cost." href="why/philosophy/" />
+	<LinkCard title="Architecture" description="Modules, contracts, aggregates and the app model sofie gen reads." href="architecture/overview/" />
+	<LinkCard title="Server-driven UI" description="Screens rendered by the engine, islands in Svelte, client areas." href="architecture/screens/" />
+	<LinkCard title="Coding agents and MCP" description="One app model served to coding agents through sofie mcp." href="features/ai-agents/" />
+	<LinkCard title="Security" description="What is on by default, and why." href="features/security/" />
+	<LinkCard title="Size and speed" description="Measured against a Loco twin of the same app." href="why/performance/" />
 </CardGrid>

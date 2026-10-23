@@ -15,7 +15,10 @@ export default defineConfig({
 			editLink: { baseUrl: 'https://github.com/sofie-rs/sofie.rs/edit/main/' },
 			sidebar: [
 				{ label: 'Start here', items: ['start/getting-started', 'start/how-it-works'] },
-				{ label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
+				{ label: 'Why sofie', items: [{ autogenerate: { directory: 'why' } }] },
+				{ label: 'Architecture', items: [{ autogenerate: { directory: 'architecture' } }] },
+				{ label: 'Features', items: [{ autogenerate: { directory: 'features' } }] },
+				{ label: 'Reference', collapsed: true, items: [{ autogenerate: { directory: 'reference' } }] },
 			],
 		}),
 	],
