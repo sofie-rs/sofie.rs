@@ -12,11 +12,12 @@ description: Install the sofie CLI, create an app and run it.
 
 ## Install the CLI
 
-Until the crates are published, the CLI installs from the repository:
-
 ```sh
-cargo install --git https://github.com/sofie-rs/sofie sofie-cli
+cargo install sofie-cli
 ```
+
+The binary is `sofie`. To follow the repository's main branch instead, install with
+`cargo install --git https://github.com/sofie-rs/sofie sofie-cli`.
 
 ## Create an app
 
@@ -25,8 +26,8 @@ sofie new app shop
 cd shop
 ```
 
-The new app depends on the framework at the commit the CLI was built from, so the two always
-match. It holds no module yet:
+The new app depends on the framework version the CLI was published as (or, for a CLI installed
+from the repository, the commit it was built from), so the two always match. It holds no module yet:
 
 ```text
 shop/

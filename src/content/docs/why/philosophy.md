@@ -192,8 +192,8 @@ join.
 
 **A proof of concept.** sofie is partly built. Some mechanisms described in its design documents
 are not implemented yet, APIs still change (a release that changes one ships a codemod for `sofie
-upgrade`), and the crates are not published; the CLI installs from the repository. Postgres is the main database, and SQLite is available for an
-app running as one instance. A team adopting sofie today is adopting a design under construction.
+upgrade`), and the crates are published as 0.1.0. Postgres is the main database, and SQLite is
+available for an app running as one instance. A team adopting sofie today is adopting a design under construction.
 
 ## Further reading
 
