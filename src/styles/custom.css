@@ -37,6 +37,19 @@
 	--sl-color-black: #fbfaf8;
 }
 
+/* Filled in brand teal on either theme: charcoal on teal reads at 10.9:1. */
+:root[data-theme='light'] .sl-link-button.primary,
+:root[data-theme='light'] .sidebar-content [aria-current='page'] {
+	background-color: var(--sofie-teal);
+	border-color: var(--sofie-teal);
+	color: #0b0b0f;
+}
+
+:root[data-theme='light'] .sl-link-button.primary:hover {
+	background-color: #11c2af;
+	color: #0b0b0f;
+}
+
 ::selection {
 	background-color: color-mix(in srgb, var(--sofie-pink) 35%, transparent);
 }
