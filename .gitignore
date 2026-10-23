@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+# Written by scripts/reference.mjs from the sofie repository.
+src/content/docs/reference/
+# The sofie checkout CI makes beside the site.
+sofie/
+.DS_Store

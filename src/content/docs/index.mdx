@@ -1,0 +1,42 @@
+---
+title: A Rust web framework
+description: A Rust web framework that derives an app’s wiring, endpoints, screens and checks from its structure.
+template: splash
+editUrl: false
+hero:
+  title: sofie
+  tagline: A Rust web framework built around a fixed app structure. The framework reads the whole app at build time and derives the wiring, endpoints, screens, permissions, telemetry and checks, so an app writes only its own logic.
+  actions:
+    - text: Get started
+      link: start/getting-started/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/sofie-rs/sofie
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="Proof of concept">
+APIs change without notice. Do not build on sofie for production yet.
+</Aside>
+
+<CardGrid>
+	<Card title="Location before annotation" icon="document">
+		A file’s place says what it is. `sofie gen` reads the app once and writes its wiring; there
+		is no container, reflection or service locator at runtime.
+	</Card>
+	<Card title="Secure by default" icon="approve-check">
+		CSRF protection, sealed sessions, an allowlist for every outgoing request and masked
+		telemetry are on without configuration.
+	</Card>
+	<Card title="One database" icon="setting">
+		Postgres or SQLite holds the events, jobs, schedules and caches. Redis and Meilisearch are
+		optional.
+	</Card>
+	<Card title="Checked at build time" icon="warning">
+		`sofie check` holds every app to the structure, so a module reaching into another one fails
+		`cargo build`.
+	</Card>
+</CardGrid>
