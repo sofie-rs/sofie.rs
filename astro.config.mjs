@@ -1,20 +1,16 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-// Served from the organization's GitHub Pages until sofie.rs points at it; then `site`
-// becomes https://sofie.rs, `base` goes and public/CNAME names the domain.
-const base = '/sofie.rs';
-
+// GitHub Pages serves it at the domain public/CNAME names.
 export default defineConfig({
-	site: 'https://sofie-rs.github.io',
-	base,
+	site: 'https://sofie.rs',
 	integrations: [
 		starlight({
 			title: 'Sofie',
 			logo: { src: './src/assets/logo.png', alt: '' },
 			favicon: '/favicon.png',
 			customCss: ['./src/styles/custom.css'],
-			head: [{ tag: 'link', attrs: { rel: 'apple-touch-icon', href: `${base}/apple-touch-icon.png` } }],
+			head: [{ tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } }],
 			description:
 				'A Rust web framework that derives an app’s wiring, endpoints, screens and checks from its structure.',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/sofie-rs/sofie' }],
