@@ -1,17 +1,20 @@
 ---
 title: A Rust web framework
-description: A Rust web framework that derives an app’s wiring, endpoints, screens and checks from its structure.
+description: A full-stack Rust web framework that reads your whole app and derives its wiring, endpoints, forms, permissions, telemetry and checks.
 template: splash
 editUrl: false
 hero:
   title: Sofie
   image:
     file: ../../assets/logo.png
-  tagline: A Rust web framework built around a fixed app structure. The framework reads the whole app at build time and derives the wiring, endpoints, screens, permissions, telemetry and checks, so an app writes only its own logic.
+  tagline: A full-stack Rust web framework that reads your whole app and writes the rest. Every app has the same structure, so sofie derives the wiring, endpoints, forms, permissions, telemetry, docs and architecture checks. You write the business logic.
   actions:
+    - text: Build your first page
+      link: start/first-page/
+      icon: right-arrow
     - text: Get started
       link: start/getting-started/
-      icon: right-arrow
+      variant: secondary
     - text: View on GitHub
       link: https://github.com/sofie-rs/sofie
       icon: external
@@ -24,22 +27,83 @@ import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 APIs change without notice. Do not build on sofie for production yet.
 </Aside>
 
+## Why sofie
+
 <CardGrid>
-	<Card title="Location before annotation" icon="document">
-		A file’s place says what it is. `sofie gen` reads the app once and writes its wiring; there
-		is no container, reflection or service locator at runtime.
+	<Card title="About a fifth of the code" icon="pencil">
+		The same shop is 365 lines in sofie and 1,834 in Loco, accounts included on both sides.
 	</Card>
-	<Card title="Secure by default" icon="approve-check">
-		CSRF protection, sealed sessions, an allowlist for every outgoing request and masked
-		telemetry are on without configuration.
+	<Card title="Fast to build and run" icon="rocket">
+		Against that Loco twin: a 4× faster clean build, a 3.5× smaller binary and about 4× the
+		requests per second. [How it is measured](why/performance/).
+	</Card>
+	<Card title="Architecture that cannot drift" icon="warning">
+		A module reaching into another, a template binding a field its query lacks or an unsafe
+		migration fails `cargo build`, not a code review.
+	</Card>
+	<Card title="Secure and observable by default" icon="approve-check">
+		CSRF, sealed sessions, owner scoping, an allowlist for outgoing requests, masked logs,
+		traces, metrics and health checks need no configuration.
+	</Card>
+</CardGrid>
+
+## A few lines, a whole feature
+
+An action that adds a product, a query that lists products, and the routes that serve them:
+
+```rust
+#[derive(Input)]
+pub struct AddProduct {
+    name: String,
+    price: Money,
+}
+
+pub async fn add_product(input: AddProduct) -> Result<Product> {
+    Product::new(input.name, input.price)
+}
+
+pub async fn list_products(read: Read) -> Result<Vec<ProductRow>> {
+    ProductRow::query().latest().limit(50).all(&read).await
+}
+
+pub fn routes(routes: &mut Routes<Web>) {
+    routes.screen("/products", "products", queries::list_products);
+    routes.post("/products", actions::add_product).then_screen("products", "products");
+}
+```
+
+```html
+<Section title="Products">
+  <Form id="add-product" post="/products" target="products">
+    <Submit label="Add product" />
+  </Form>
+  <Table id="products" of={data} columns="name price" />
+</Section>
+```
+
+From this, sofie serves a page whose form is built from `AddProduct`, a table that updates in
+place, the same rows as JSON at the same URL, field-by-field validation errors, CSRF protection
+and a trace per request. `sofie explain` and `sofie mcp` answer questions about any route.
+[Build it yourself in ten minutes](start/first-page/).
+
+## What comes with it
+
+<CardGrid>
+	<Card title="Server-driven UI" icon="laptop">
+		One template format rendered on the server and updated over htmx, with Svelte islands where
+		a page needs rich interaction.
 	</Card>
 	<Card title="One database" icon="setting">
-		Postgres or SQLite holds the events, jobs, schedules and caches. Redis and Meilisearch are
-		optional.
+		Postgres or SQLite holds the records and also the event outbox, jobs, schedules and cache.
+		Redis and Meilisearch are optional.
 	</Card>
-	<Card title="Checked at build time" icon="warning">
-		`sofie check` holds every app to the structure, so a module reaching into another one fails
-		`cargo build`.
+	<Card title="Accounts and SaaS" icon="seti:lock">
+		Sign-up, passkeys, OAuth, two-factor, impersonation, organizations, billing with Stripe or
+		Paddle, mail, notifications and feature flags, as packages.
+	</Card>
+	<Card title="Made for coding agents" icon="puzzle">
+		A generated `AGENTS.md` and an MCP server over the same app model, so an agent finds where
+		code goes and what it may touch.
 	</Card>
 </CardGrid>
 
@@ -47,9 +111,9 @@ APIs change without notice. Do not build on sofie for production yet.
 
 <CardGrid>
 	<LinkCard title="Why Sofie" description="The problem it solves, its principles and what they cost." href="why/philosophy/" />
+	<LinkCard title="How Sofie works" description="The parts of an app and what is generated from them." href="start/how-it-works/" />
 	<LinkCard title="Architecture" description="Modules, contracts, aggregates and the app model sofie gen reads." href="architecture/overview/" />
-	<LinkCard title="Server-driven UI" description="Screens rendered by the engine, islands in Svelte, client areas." href="architecture/screens/" />
-	<LinkCard title="Coding agents and MCP" description="One app model served to coding agents through sofie mcp." href="features/ai-agents/" />
 	<LinkCard title="Security" description="What is on by default, and why." href="features/security/" />
+	<LinkCard title="Coding agents and MCP" description="One app model served to coding agents through sofie mcp." href="features/ai-agents/" />
 	<LinkCard title="Size and speed" description="Measured against a Loco twin of the same app." href="why/performance/" />
 </CardGrid>
