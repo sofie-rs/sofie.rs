@@ -7,7 +7,12 @@ description: Install the sofie CLI, create an app and run it.
 
 - Rust 1.99 or later.
 - A Postgres database you can reach from this machine. SQLite works too, with sofie’s `sqlite`
-  feature.
+  feature. With Docker, this starts one:
+
+  ```sh
+  docker run -d --name sofie-postgres -p 127.0.0.1:25432:5432 \
+    -e POSTGRES_USER=sofie -e POSTGRES_PASSWORD=sofie -e POSTGRES_DB=sofie postgres:18
+  ```
 - Node, only if the app will have Svelte islands or client areas.
 
 ## Install the CLI
@@ -65,20 +70,19 @@ A binary started outside `sofie dev` migrates only with `SOFIE_MIGRATE=on`, so a
 decides which process migrates and when. On a database with none of the framework’s tables it
 refuses to start and says so.
 
-## Add to it
+## Next
 
-```sh
-sofie new module catalog
-```
+[Your first page](../first-page/) builds a product catalog in this app, step by step: a module, a
+record, a page with a form and a table, and the JSON API that comes with it.
 
-A module starts in the `Core` tier; `modules/catalog/src/module.rs` changes it. Add to it with
-the generators:
+The generators you will use most:
 
+- `sofie new module catalog`: a module, the unit that owns its data, rules and screens.
 - `sofie new aggregate catalog Product`: a record and the migration creating its table.
 - `sofie new route catalog web get /products list_products --screen products`: a query, the
   endpoint serving it and its screen.
 - `sofie new event` and `sofie new listener`: a fact one module publishes and another reacts to.
 
-After changing routes, modules, aggregates or screens, run `sofie gen`. A finding of
-`sofie check` fails `cargo build`, so the app cannot drift from its structure. The
-[command reference](../../reference/commands/) lists every command.
+`sofie dev` regenerates the wiring as you work; elsewhere, run `sofie gen` after changing routes,
+modules, aggregates or screens. A finding of `sofie check` fails `cargo build`, so the app cannot
+drift from its structure. The [command reference](../../reference/commands/) lists every command.
